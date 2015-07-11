@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bar Chart</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+      #chart{
+        height: 500px;
+        width: 1000px;
+      }
+    </style>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      function drawChart() {
+
+        var data  = new google.visualization.DataTable();
+        data.addColumn('string', 'Day of Week');
+        data.addColumn('number', 'Sal\'s Supreme');
+        data.addColumn('number', 'Pepperoni Perfection');
+        data.addColumn('number', 'Hawaiian Hula');
+        data.addColumn('number', 'Positively Pesto');
+        data.addColumn('number', 'Very Veggie');
+        data.addRows([
+          ['Sunday', 38, 73, 21, 4, 2],
+          ['Monday', 11, 52, 9, 2, 4],
+          ['Tuesday', 14, 49, 7, 2, 3],
+          ['Wednesday', 22, 71, 19, 3, 5],
+          ['Thursday', 31, 68, 15, 2, 4],
+          ['Friday', 43, 81, 23, 5, 7],
+          ['Saturday', 52, 92, 27, 7, 9]
+        ]);
+
+        var options = {
+          backgroundColor: {stroke: '#000', strokeWidth: 4, fill: '#bbb'},
+          title: 'Pizza Performance',
+          isStacked: true,
+          focusTarget: 'category',
+          titleTextStyle: {fontSize: 18},
+          tooltip: {showColorCode: true},
+          hAxis: {
+            title: 'Day of the Week',
+            titleTextStyle: {fontSize: 16}
+          },
+          yAxis: {
+            title: 'Number of Pizzas Sold',
+            titleTextStyle: {fontSize: 16},
+            gridlines: {count: 8}
+          }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+        chart.draw(data, options);
+      }
+
+      google.load('visualization', '1.0', {
+        'packages': ['corechart'],
+        'callback': drawChart
+      });
+    </script>
+
+
+  </head>
+  <body>
+    <div id="chart">
+
+    </div>
+  </body>
+</html>

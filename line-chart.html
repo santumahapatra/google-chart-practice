@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Line Chart</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+      #chart{
+        height: 500px;
+        width: 1000px;
+      }
+    </style>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      function drawChart() {
+
+        var data  = new google.visualization.DataTable();
+        data.addColumn('timeofday', 'Time of Day');
+        data.addColumn('number', 'Open Tables');
+        data.addColumn({type: 'string', role: 'annotation'});
+        data.addColumn({type: 'string', role: 'annotationText'});
+        data.addRows([
+          [[10,01,0,0], 12, null, null],
+          [[10,25,0,0], 10, null, null],
+          [[11,17,0,0], 7, null, null],
+          [[12,02,0,0], 3, 'A', 'Lunch Event'],
+          [[13,48,0,0], 5, null, null],
+          [[14,32,0,0], 8, null, null],
+          [[15,09,0,0], 6, null, null],
+          [[15,51,0,0], 4, null, null],
+          [[16,27,0,0], 2, null, null],
+          [[17,46,0,0], 1, 'B', 'Two Birthday Parties'],
+          [[19,09,0,0], 3, null, null],
+          [[20,41,0,0], 7, null, null],
+          [[21,18,0,0], 9, null, null],
+          [[21,51,0,0], 10, null, null]
+        ]);
+
+        var options = {
+          backgroundColor: {stroke: '#000', strokeWidth: 4, fill: '#bbb'},
+          curveType: 'function',
+          title: 'Open Tables by Hour',
+          titleTextStyle: {fontSize: 18},
+          hAxis: {
+            title: 'Time of Day',
+            titleTextStyle: {fontSize: 16},
+            format: 'hh:mm a'
+          },
+          pointSize: 5,
+          vAxis: {
+            title: 'Number of Open Tables',
+            titleTextStyle: {fontSize: 16}
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+      }
+
+      google.load('visualization', '1.0', {
+        'packages': ['corechart'],
+        'callback': drawChart
+      });
+    </script>
+
+
+  </head>
+  <body>
+    <div id="chart">
+
+    </div>
+  </body>
+</html>
